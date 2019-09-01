@@ -1,17 +1,17 @@
 version: '2'
 
 services:
-  sandiego.bipolars.for.elizabeth.infinito.blue:
+  1776.frickin.rocks:
     environment:
-      - VIRTUAL_HOST=sandiego.bipolars.for.elizabeth.infinito.blue
-      - LETSENCRYPT_HOST=sandiego.bipolars.for.elizabeth.infinito.blue
+      - VIRTUAL_HOST=1776.frickin.rocks
+      - LETSENCRYPT_HOST=1776.frickin.rocks
     build: .
-    image: mountain/sandiego.bipolars.for.elizabeth.infinito.blue
-    container_name: sandiego.bipolars.for.elizabeth.infinito.blue
+    image: mountain/1776.frickin.rocks
+    container_name: 1776.frickin.rocks
     ports:
       # strapi runs on port 1337, so map this port out to port 7002 to access it.  the container always
       # specifies this it exposes this port in the Dockerfile.  to change this port (1337), change Dockerfile
-      - 9003:9003
+      - 8888:8888
     networks:
       - mongonet
     restart: always
