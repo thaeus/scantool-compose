@@ -108,7 +108,7 @@ export default class ScanFlip extends React.Component {
       this.setState({ message: message});
       this.setState({ openOnMount: true });
       this.setState({ error: false });
-
+      console.log("read " + rawScan);
       
 
     }
@@ -119,12 +119,7 @@ export default class ScanFlip extends React.Component {
   }
 
   loadCampaignVideo() {
-    if(this.state.error === false) {
-      this.setState({
-        toggler: true
-      });
-      this.setState(prevState => ({ isFlipped: !prevState.isFlipped }));
-    }
+
   }
 
   clearStateVideo = () => {
@@ -145,17 +140,8 @@ export default class ScanFlip extends React.Component {
           <X3LenseScanner onScan={this.handleScan} />
         </div>
         <div key="back">
-          <FsLightbox
-              key={this.state.plink} 
-              toggler={this.state.toggler}
-              sources={[
-                'https://www.youtube.com/watch?v=' + this.state.video,
-              ]}
-              openOnMount={true}
-          />
         </div>
       </ReactCardFlip>
-      <TypistMessage onTypingDone={this.loadCampaignVideo} message={this.state.message} key={this.state.plink} />
       <button onClick={this.handleClick}>Click for scanner</button>
     </div>
 

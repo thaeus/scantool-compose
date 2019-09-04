@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import HomeIcon from '@material-ui/icons/Home';
+import ScanFlip from './ScanFlip.web';
 import CodeIcon from '@material-ui/icons/Code';
 import { withStyles } from '@material-ui/core/styles';
 import { translate } from 'react-admin';
@@ -24,7 +25,7 @@ const mediaUrl = `https://marmelab.com/posters/beard-${parseInt(
 
 const Welcome = ({ classes, translate }) => (
     <Card>
-        <CardMedia image={mediaUrl} className={classes.media} />
+        <ScanFlip />
         <CardContent>
             <Typography variant="headline" component="h2">
                 {translate('pos.dashboard.welcome.title')}
