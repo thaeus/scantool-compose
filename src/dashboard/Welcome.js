@@ -29,9 +29,6 @@ const Welcome = ({ classes, translate }) => (
             <Typography variant="headline" component="h2">
                 {translate('pos.dashboard.welcome.title')}
             </Typography>
-            <Typography component="p">
-                {translate('pos.dashboard.welcome.subtitle')}
-            </Typography>
         </CardContent>
         <CardActions style={{ justifyContent: 'flex-end' }}>
             <Button href="https://marmelab.com/react-admin">

@@ -1,0 +1,50 @@
+$bg-color: #333;
+$bl-color: rgb(7, 223, 90);
+
+
+body {
+  font-family: monospace;
+  font-size: 4px;
+  background-color: #333333;
+  padding: 10px 10px;
+}
+
+.TypistExample {
+
+  a {
+    color: inherit;
+    &:hover {
+      background-color: $bl-color;
+      color: white;
+      text-decoration: none;
+    }
+  }
+  &-header {
+    margin-top: 5%;
+    margin-bottom: 15%;
+    text-align: center;
+    font-size: 3em;
+    cursor: pointer;
+    color: $bl-color;
+  }
+  &-message {
+    color: hotpink;
+    width: 400px;
+    margin: auto;
+    .flash {
+      color: $bl-color;
+      text-decoration: underline;
+
+      animation-name: blinker;
+      animation-duration: 0.7s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      @keyframes blinker {
+        0% { opacity: 1.0; }
+        50% { opacity: 0.0; }
+        100% { opacity: 1.0; }
+      }
+    }
+  }
+}
+
