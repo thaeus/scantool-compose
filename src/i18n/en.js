@@ -25,7 +25,7 @@ export default {
             welcome: {
                 title: 'Welcome to Art Frickin Rocks!',
                 subtitle:
-                    "This is a showcase of art that I have been gifted throughout the years",
+                    "This is a showcase of some art that I have been gifted throughout the years",
                 aor_button: 'Flip to scanner',
                 demo_button: 'Source for this demo',
             },

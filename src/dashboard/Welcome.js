@@ -27,8 +27,11 @@ const Welcome = ({ classes, translate }) => (
     <Card>
         <ScanFlip />
         <CardContent>
-            <Typography variant="headline" component="h2">
+            <Typography variant="headline" component="h1">
                 {translate('pos.dashboard.welcome.title')}
+                <br />
+            </Typography>
+            <Typography component="h2">
                 {translate('pos.dashboard.welcome.subtitle')}
             </Typography>
         </CardContent>
