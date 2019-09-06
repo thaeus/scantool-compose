@@ -201,19 +201,6 @@ class Dashboard extends Component {
                                 />
                             </div>
                         </div>
-                        <div style={styles.rightCol}>
-                            <div style={styles.flex}>
-                                <PendingReviews
-                                    nb={nbPendingReviews}
-                                    reviews={pendingReviews}
-                                    customers={pendingReviewsCustomers}
-                                />
-                                <NewCustomers
-                                    nb={nbNewCustomers}
-                                    visitors={newCustomers}
-                                />
-                            </div>
-                        </div>
                     </div>
                 }
             />

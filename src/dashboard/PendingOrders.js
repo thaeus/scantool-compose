@@ -45,18 +45,7 @@ const PendingOrders = ({ orders = [], customers = {}, translate, classes }) => (
                     ) : (
                         <Avatar />
                     )}
-                    <ListItemText
-                        primary={new Date(record.date).toLocaleString('en-GB')}
-                        secondary={translate('pos.dashboard.order.items', {
-                            smart_count: record.basket.length,
-                            nb_items: record.basket.length,
-                            customer_name: customers[record.customer_id]
-                                ? `${
-                                      customers[record.customer_id].first_name
-                                  } ${customers[record.customer_id].last_name}`
-                                : '',
-                        })}
-                    />
+                    <p>this is here</p>
                     <ListItemSecondaryAction>
                         <span className={classes.cost}>{record.total}$</span>
                     </ListItemSecondaryAction>

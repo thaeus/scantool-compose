@@ -9,6 +9,12 @@ import ReactCardFlip from 'react-card-flip';
 import X3LenseScanner from './x3lense.web';
 import TypistMessage from './TypistMessage.web';
 import VideoClip from './Clip.web';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import HomeIcon from '@material-ui/icons/Home';
+import { translate } from 'react-admin';
+import VideoSlider from './VideoSlider';
+
 
 export default class ScanFlip extends React.Component {
   constructor(props) {
@@ -135,14 +141,20 @@ export default class ScanFlip extends React.Component {
     return (
 
     <div>
-      <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="vertical">
+      <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
         <div key="front">
           <X3LenseScanner onScan={this.handleScan} />
         </div>
         <div key="back">
+          <VideoSlider />
         </div>
       </ReactCardFlip>
-      <button onClick={this.handleClick}>Click for scanner</button>
+      <CardActions style={{ justifyContent: 'center' }}>
+            <Button onClick={this.handleClick}>
+                <HomeIcon style={{ paddingRight: '0.5em' }} />
+                {translate('pos.dashboard.welcome.aor_button')}
+            </Button>
+        </CardActions>
     </div>
 
     );
