@@ -16,6 +16,7 @@ import {
     withStyles,
 } from '@material-ui/core/styles';
 import LockIcon from '@material-ui/icons/Lock';
+import Theater from '@material-ui/icons/Theaters';
 
 import { Notification, translate, userLogin } from 'react-admin';
 
@@ -90,7 +91,14 @@ class Login extends Component {
         return (
             <div className={classes.main}>
                 <Card className={classes.card}>
+                <div className={classes.avatar}>
+                        <Avatar className={classes.icon}>
+                            <Theater />
+                        </Avatar>
+                    </div>
                     <VideoClip videoId='XYR1Pf8jTaI' />
+                </Card>
+                <Card className={classes.card}>
                     <div className={classes.avatar}>
                         <Avatar className={classes.icon}>
                             <LockIcon />
