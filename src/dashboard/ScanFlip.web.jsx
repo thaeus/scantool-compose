@@ -143,10 +143,10 @@ export default class ScanFlip extends React.Component {
     <div>
       <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
         <div key="front">
-          <X3LenseScanner onScan={this.handleScan} />
+          <VideoSlider />
         </div>
         <div key="back">
-          <VideoSlider />
+          <X3LenseScanner onScan={this.handleScan} />
         </div>
       </ReactCardFlip>
       <CardActions style={{ justifyContent: 'center' }}>

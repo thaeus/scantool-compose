@@ -10,5 +10,5 @@ COPY . /scan
 #RUN npm install
 #CMD ["npm", "run-script", "build"]
 CMD ["npm", "start"]
-EXPOSE 8888
+EXPOSE 8891
 ##ENTRYPOINT "./randomEgg.sh"

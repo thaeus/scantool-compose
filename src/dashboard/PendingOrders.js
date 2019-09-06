@@ -26,7 +26,7 @@ const style = theme => ({
 
 const PendingOrders = ({ orders = [], customers = {}, translate, classes }) => (
     <Card className={classes.root}>
-        <CardHeader title={translate('pos.dashboard.pending_orders')} />
+        <CardHeader title={translate('pos.dashboard.qpons')} />
         <List dense={true}>
             {orders.map(record => (
                 <ListItem
