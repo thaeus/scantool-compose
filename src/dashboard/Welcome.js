@@ -29,6 +29,7 @@ const Welcome = ({ classes, translate }) => (
         <CardContent>
             <Typography variant="headline" component="h2">
                 {translate('pos.dashboard.welcome.title')}
+                {translate('pos.dashboard.welcome.subtitle')}
             </Typography>
         </CardContent>
     </Card>

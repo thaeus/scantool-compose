@@ -152,7 +152,7 @@ export default class ScanFlip extends React.Component {
       <CardActions style={{ justifyContent: 'center' }}>
             <Button onClick={this.handleClick}>
                 <HomeIcon style={{ paddingRight: '0.5em' }} />
-                {translate('pos.dashboard.welcome.aor_button')}
+                Scan Walmart Receipt!
             </Button>
         </CardActions>
     </div>

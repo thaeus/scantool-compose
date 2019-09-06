@@ -17,7 +17,7 @@ export default {
             pending_reviews: 'Pending Reviews',
             new_customers: 'New Customers',
             pending_orders: 'Pending Orders',
-            qpons: 'Qpons',
+            qpons: '"QR"-pawns',
             order: {
                 items:
                     'by %{customer_name}, one item |||| by %{customer_name}, %{nb_items} items',
@@ -25,7 +25,7 @@ export default {
             welcome: {
                 title: 'Welcome to Art Frickin Rocks!',
                 subtitle:
-                    "This is a showcase of my art that I have shared throughout the years",
+                    "This is a showcase of art that I have been gifted throughout the years",
                 aor_button: 'Flip to scanner',
                 demo_button: 'Source for this demo',
             },

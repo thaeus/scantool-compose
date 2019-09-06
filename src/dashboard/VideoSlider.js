@@ -21,51 +21,31 @@ export default class VideoSlider extends React.Component {
   render() {
  
     const images = [
-      {
-        original: one,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: two,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: three,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: four,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: five,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: six,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: seven,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: eight,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: nine,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: ten,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: eleven,
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      }
-    ]
+        {
+            original: two,
+            thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+        },
+        {
+          original: one,
+          thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+        },
+        {
+          original: three,
+          thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+        },
+        {
+            original: four,
+            thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+        },
+        {
+            original: five,
+            thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+        },
+        {
+            original: six,
+            thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+        }
+      ]
  
     return (
       <ImageGallery items={images} />
