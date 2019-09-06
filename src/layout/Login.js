@@ -89,8 +89,8 @@ class Login extends Component {
         const { classes, handleSubmit, isLoading, translate } = this.props;
         return (
             <div className={classes.main}>
-                <VideoClip videoId='XYR1Pf8jTaI' />
                 <Card className={classes.card}>
+                    <VideoClip videoId='XYR1Pf8jTaI' />
                     <div className={classes.avatar}>
                         <Avatar className={classes.icon}>
                             <LockIcon />
