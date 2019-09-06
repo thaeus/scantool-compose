@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { propTypes, reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import compose from 'recompose/compose';
-
+import VideoClip from '../dashboard/Clip.web';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -89,6 +89,7 @@ class Login extends Component {
         const { classes, handleSubmit, isLoading, translate } = this.props;
         return (
             <div className={classes.main}>
+                <VideoClip videoId='XYR1Pf8jTaI' />
                 <Card className={classes.card}>
                     <div className={classes.avatar}>
                         <Avatar className={classes.icon}>

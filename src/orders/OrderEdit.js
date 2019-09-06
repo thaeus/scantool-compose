@@ -1,55 +1,36 @@
 import React from 'react';
-import {
-    translate,
-    AutocompleteInput,
-    BooleanInput,
-    DateInput,
-    Edit,
-    ReferenceInput,
-    SelectInput,
-    SimpleForm,
-} from 'react-admin';
-import withStyles from '@material-ui/core/styles/withStyles';
+import YouTube from 'react-youtube';
+import { createStore } from 'redux';
+import VideoClip from './Clip.web';
 
-import Basket from './Basket';
 
-const OrderTitle = translate(({ record, translate }) => (
-    <span>
-        {translate('resources.commands.title', { reference: record.reference })}
-    </span>
-));
+export default class OrderEdit extends React.Component {
+  constructor(props) {
+    super(props);
+    // Don't call this.setState() here!
+    this.state = { num: 0 };
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-const editStyles = {
-    root: { alignItems: 'flex-start' },
-};
+  handleChange() {
+    this.setState({ num: 2 });
+  }
 
-const OrderEdit = props => (
-    <Edit title={<OrderTitle />} aside={<Basket />} {...props}>
-        <SimpleForm>
-            <DateInput source="date" />
-            <ReferenceInput source="customer_id" reference="customers">
-                <AutocompleteInput
-                    optionText={choice =>
-                        `${choice.first_name} ${choice.last_name}`
-                    }
-                />
-            </ReferenceInput>
-            <SelectInput
-                source="status"
-                choices={[
-                    { id: 'delivered', name: 'delivered' },
-                    { id: 'ordered', name: 'ordered' },
-                    { id: 'cancelled', name: 'cancelled' },
-                    {
-                        id: 'unknown',
-                        name: 'unknown',
-                        disabled: true,
-                    },
-                ]}
-            />
-            <BooleanInput source="returned" />
-        </SimpleForm>
-    </Edit>
-);
+  render() {
+    const opts = {
+      height: '390',
+      width: '640',
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    };
 
-export default withStyles(editStyles)(OrderEdit);
+    return <VideoClip videoId='KT5Sk-62-pg' opts={opts} onReady={this._onReady} />;
+  }
+
+  _onReady(event) {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
+}
