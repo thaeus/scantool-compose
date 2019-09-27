@@ -1,17 +1,17 @@
 version: '2'
 
 services:
-  art.frickin.rocks:
+  chris.frickin.rocks:
     environment:
-      - VIRTUAL_HOST=art.frickin.rocks
-      - LETSENCRYPT_HOST=art.frickin.rocks
+      - VIRTUAL_HOST=chris.frickin.rocks
+      - LETSENCRYPT_HOST=chris.frickin.rocks
     build: .
-    image: mountain/art.frickin.rocks
-    container_name: art.frickin.rocks
+    image: mountain/chris.frickin.rocks
+    container_name: chris.frickin.rocks
     ports:
       # strapi runs on port 1337, so map this port out to port 7002 to access it.  the container always
       # specifies this it exposes this port in the Dockerfile.  to change this port (1337), change Dockerfile
-      - 8891:8891
+      - 8855:8855
     networks:
       - mongonet
     restart: always
