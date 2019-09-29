@@ -140,8 +140,6 @@ export default class ScanFlip extends React.Component {
   render() {
 
     const opts = {
-      height: '390',
-      width: '640',
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
         autoplay: 1
@@ -156,7 +154,7 @@ export default class ScanFlip extends React.Component {
           <X3LenseScanner onScan={this.handleScan} />
         </div>
         <div key="back">
-          <VideoClip videoId='KT5Sk-62-pg' opts={opts} onReady={this._onReady} />;
+          <VideoClip videoId='KT5Sk-62-pg' onReady={this._onReady} />;
         </div>
       </ReactCardFlip>
       <CardActions style={{ justifyContent: 'center' }}>
