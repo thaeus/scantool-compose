@@ -34,7 +34,6 @@ class Dashboard extends Component {
 
     fetchData() {
         this.fetchOrders();
-        this.fetchReviews();
         this.fetchCustomers();
     }
 
@@ -91,27 +90,6 @@ class Dashboard extends Component {
         });
     }
 
-    async fetchReviews() {
-        const { dataProvider } = this.props;
-        const { data: reviews } = await dataProvider(GET_LIST, 'reviews', {
-            filter: { status: 'pending' },
-            sort: { field: 'date', order: 'DESC' },
-            pagination: { page: 1, perPage: 100 },
-        });
-        const nbPendingReviews = reviews.reduce(nb => ++nb, 0);
-        const pendingReviews = reviews.slice(0, Math.min(10, reviews.length));
-        this.setState({ pendingReviews, nbPendingReviews });
-        const { data: customers } = await dataProvider(GET_MANY, 'customers', {
-            ids: pendingReviews.map(review => review.customer_id),
-        });
-        this.setState({
-            pendingReviewsCustomers: customers.reduce((prev, customer) => {
-                prev[customer.id] = customer; // eslint-disable-line no-param-reassign
-                return prev;
-            }, {}),
-        });
-    }
-
     async fetchCustomers() {
         const { dataProvider } = this.props;
         const aMonthAgo = new Date();
@@ -158,12 +136,6 @@ class Dashboard extends Component {
                                 <MonthlyRevenue value={revenue} />
                                 <NbNewOrders value={nbNewOrders} />
                             </div>
-                            <div style={styles.singleCol}>
-                                <PendingOrders
-                                    orders={pendingOrders}
-                                    customers={pendingOrdersCustomers}
-                                />
-                            </div>
                         </div>
                     </div>
                 }
@@ -176,29 +148,17 @@ class Dashboard extends Component {
                             <MonthlyRevenue value={revenue} />
                             <NbNewOrders value={nbNewOrders} />
                         </div>
-                        <div style={styles.singleCol}>
-                            <PendingOrders
-                                orders={pendingOrders}
-                                customers={pendingOrdersCustomers}
-                            />
-                        </div>
                     </div>
                 }
                 medium={
                     <div style={styles.flex}>
                         <div style={styles.leftCol}>
-                            <div style={styles.flex}>
-                                <MonthlyRevenue value={revenue} />
-                                <NbNewOrders value={nbNewOrders} />
-                            </div>
                             <div style={styles.singleCol}>
                                 <Welcome />
                             </div>
-                            <div style={styles.singleCol}>
-                                <PendingOrders
-                                    orders={pendingOrders}
-                                    customers={pendingOrdersCustomers}
-                                />
+                            <div style={styles.flex}>
+                                <MonthlyRevenue value={revenue} />
+                                <NbNewOrders value={nbNewOrders} />
                             </div>
                         </div>
                     </div>

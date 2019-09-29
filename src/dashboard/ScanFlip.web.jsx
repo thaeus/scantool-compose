@@ -114,7 +114,7 @@ export default class ScanFlip extends React.Component {
       this.setState({ message: message});
       this.setState({ openOnMount: true });
       this.setState({ error: false });
-      console.log("read " + rawScan);
+      console.log("readdddd " + rawScan);
       
 
     }
@@ -138,15 +138,25 @@ export default class ScanFlip extends React.Component {
 
 
   render() {
+
+    const opts = {
+      height: '390',
+      width: '640',
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    };
+    
     return (
 
     <div>
       <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
         <div key="front">
-          <VideoSlider />
+          <X3LenseScanner onScan={this.handleScan} />
         </div>
         <div key="back">
-          <X3LenseScanner onScan={this.handleScan} />
+          <VideoClip videoId='KT5Sk-62-pg' opts={opts} onReady={this._onReady} />;
         </div>
       </ReactCardFlip>
       <CardActions style={{ justifyContent: 'center' }}>

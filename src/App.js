@@ -3,7 +3,7 @@ import { Admin, Resource } from 'react-admin';
 
 import './App.css';
 
-import authProvider from './authProvider';
+//import authProvider from './authProvider';
 import sagas from './sagas';
 import themeReducer from './themeReducer';
 import { Login, Layout } from './layout';
@@ -67,7 +67,7 @@ class App extends Component {
                 customReducers={{ theme: themeReducer }}
                 customSagas={sagas}
                 customRoutes={customRoutes}
-                authProvider={authProvider}
+                //authProvider={authProvider}
                 dashboard={Dashboard}
                 loginPage={Login}
                 appLayout={Layout}
