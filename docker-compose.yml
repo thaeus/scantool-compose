@@ -1,13 +1,13 @@
 version: '2'
 
 services:
-  chris.frickin.rocks:
+  sandiego.2020.codes:
     environment:
-      - VIRTUAL_HOST=chris.frickin.rocks
-      - LETSENCRYPT_HOST=chris.frickin.rocks
+      - VIRTUAL_HOST=sandiego.2020.codes.local
+      - LETSENCRYPT_HOST=sandiego.2020.codes.local
     build: .
-    image: mountain/chris.frickin.rocks
-    container_name: chris.frickin.rocks
+    image: mountain/sandiego.2020.codes
+    container_name: sandiego.2020.codes
     ports:
       # strapi runs on port 1337, so map this port out to port 7002 to access it.  the container always
       # specifies this it exposes this port in the Dockerfile.  to change this port (1337), change Dockerfile

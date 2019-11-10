@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
 import { translate } from 'react-admin';
 import VideoSlider from './VideoSlider';
+import axios from 'axios';
 
 
 export default class ScanFlip extends React.Component {
@@ -29,6 +30,15 @@ export default class ScanFlip extends React.Component {
       ['iX0UHxazZ5o', '#6'],
       ['68uUeZGppXw', '#7'],
       ['oaN_sWyTW24', '#8'],
+      ['oaN_sWyTW24', '#9'],
+      ['oaN_sWyTW24', '#10'],
+      ['oaN_sWyTW24', '#11'],
+      ['oaN_sWyTW24', '#12'],
+      ['oaN_sWyTW24', '#13'],
+      ['oaN_sWyTW24', '#14'],
+      ['oaN_sWyTW24', '#15'],
+      ['oaN_sWyTW24', '#16'],
+
     ];
 
     this.state = {
@@ -115,7 +125,12 @@ export default class ScanFlip extends React.Component {
       this.setState({ openOnMount: true });
       this.setState({ error: false });
       console.log("readdddd " + rawScan);
-      
+
+      axios.get('https://api.2020.codes/candidate/scan?matric_value='+rawScan)
+      .then(elec => {
+        console.log(elec.data)
+      })
+
 
     }
   }
@@ -139,6 +154,7 @@ export default class ScanFlip extends React.Component {
 
   render() {
 
+
     const opts = {
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
@@ -148,13 +164,13 @@ export default class ScanFlip extends React.Component {
     
     return (
 
-    <div>
+    <div >
       <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
         <div key="front">
           <X3LenseScanner onScan={this.handleScan} />
         </div>
         <div key="back">
-          <VideoClip videoId='KT5Sk-62-pg' onReady={this._onReady} />;
+          <VideoClip videoId={this.props.videoId} onReady={this._onReady} />;
         </div>
       </ReactCardFlip>
       <CardActions style={{ justifyContent: 'center' }}>
