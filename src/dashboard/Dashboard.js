@@ -215,9 +215,11 @@ class Dashboard extends Component {
                             <div style={{ marginBottom: '2em' }}>
                                 <Welcome />
                             </div>
-                            <div style={styles.flex}>
-                                <MonthlyRevenue value={revenue} />
-                                <NbNewOrders value={nbNewOrders} />
+                            <div>
+                                {this.getCard(this.state.isFlipped1,this.handleClick1)}
+                                {this.getCard(this.state.isFlipped2,this.handleClick2)}
+                                {this.getCard(this.state.isFlipped3,this.handleClick3)}
+                                {this.getCard(this.state.isFlipped4,this.handleClick4)}
                             </div>
                         </div>
                     </div>
@@ -228,9 +230,11 @@ class Dashboard extends Component {
                             <Welcome />
                         </div>
                         <div style={styles.flex}>
-                            <MonthlyRevenue value={revenue} />
-                            <NbNewOrders value={nbNewOrders} />
-                        </div>
+                                {this.getCard(this.state.isFlipped1,this.handleClick1)}
+                                {this.getCard(this.state.isFlipped2,this.handleClick2)}
+                                {this.getCard(this.state.isFlipped3,this.handleClick3)}
+                                {this.getCard(this.state.isFlipped4,this.handleClick4)}
+                            </div>
                     </div>
                 }
                 medium={
