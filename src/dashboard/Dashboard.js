@@ -9,6 +9,11 @@ import NbNewOrders from './NbNewOrders';
 import PendingOrders from './PendingOrders';
 import PendingReviews from './PendingReviews';
 import NewCustomers from './NewCustomers';
+import ReactCardFlip from 'react-card-flip';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import HomeIcon from '@material-ui/icons/Home';
+import Card from 'react-playing-card'
 
 const styles = {
     flex: { display: 'flex' },
@@ -20,6 +25,29 @@ const styles = {
 
 class Dashboard extends Component {
     state = {};
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          showScanner: true,
+          video: 'qpT5Md4TPJg',
+          toggler: false,
+          result: 'No result',
+          isFull: false,
+          isFlipped1: false,
+          isFlipped2: false,
+          isFlipped3: false,
+          isFlipped4: false,
+          message: 'Get your walmart receipts and start scanning!',
+          error: false
+        };
+        this.handleClick1 = this.handleClick1.bind(this);
+        this.handleClick2 = this.handleClick2.bind(this);
+        this.handleClick3 = this.handleClick3.bind(this);
+        this.handleClick4 = this.handleClick4.bind(this);
+
+      }
 
     componentDidMount() {
         this.fetchData();
@@ -112,6 +140,61 @@ class Dashboard extends Component {
         });
     }
 
+    getCard2() {
+        const flipper = <ReactCardFlip isFlipped={this.state.isFlipped2} flipDirection="horizontal">
+        <div key="front">
+           <p>This will be candi 2 D</p>
+        </div>
+        <div key="back">
+          <p>This will be candi 2 RRR</p>
+        </div>
+      </ReactCardFlip>;
+        return flipper;
+    }
+    
+    
+    handleClick1(e) {
+         e.preventDefault();
+         this.setState(prevState => ({ isFlipped1: !prevState.isFlipped1 }));
+    }
+
+    handleClick2(e) {
+        e.preventDefault();
+        this.setState(prevState => ({ isFlipped2: !prevState.isFlipped2 }));
+   }
+
+   handleClick3(e) {
+        e.preventDefault();
+        this.setState(prevState => ({ isFlipped3: !prevState.isFlipped3 }));
+   }
+
+    handleClick4(e) {
+         e.preventDefault();
+         this.setState(prevState => ({ isFlipped4: !prevState.isFlipped4 }));
+    }
+
+    getCard(stateVar,clickFunction) {
+        const flipper = 
+        <div> 
+            <ReactCardFlip isFlipped={stateVar} flipDirection="horizontal">
+            <div key="front">
+                <Card rank="A" suit="S" />
+            </div>
+            <div key="back">
+                <Card rank="7" suit="S" />
+            </div>
+            </ReactCardFlip>
+            <CardActions style={{ justifyContent: 'center' }}>
+                <Button onClick={clickFunction}>
+                    <HomeIcon style={{ paddingRight: '0.5em' }} />
+                        See other candidate
+                </Button>
+            </CardActions> 
+        </div>
+      ;
+        return flipper;
+    }
+      
     render() {
         const {
             nbNewCustomers,
@@ -157,8 +240,10 @@ class Dashboard extends Component {
                                 <Welcome />
                             </div>
                             <div style={styles.flex}>
-                                <MonthlyRevenue value={revenue} />
-                                <NbNewOrders value={nbNewOrders} />
+                                {this.getCard(this.state.isFlipped1,this.handleClick1)}
+                                {this.getCard(this.state.isFlipped2,this.handleClick2)}
+                                {this.getCard(this.state.isFlipped3,this.handleClick3)}
+                                {this.getCard(this.state.isFlipped4,this.handleClick4)}
                             </div>
                         </div>
                     </div>

@@ -42,6 +42,7 @@ export default class ScanFlip extends React.Component {
     ];
 
     this.state = {
+      showScanner: true,
       video: 'qpT5Md4TPJg',
       toggler: false,
       result: 'No result',
@@ -124,10 +125,13 @@ export default class ScanFlip extends React.Component {
       this.setState({ message: message});
       this.setState({ openOnMount: true });
       this.setState({ error: false });
+
       console.log("readdddd " + rawScan);
 
-      axios.get('https://api.2020.codes/candidate/scan?matric_value='+rawScan)
+      axios.get('http://localhost:7000/candidate/scan?matric_value='+rawScan)
       .then(elec => {
+        this.setState({ cards: [elec.data.card1] });
+        this.setState({ showScanner: false });
         console.log(elec.data)
       })
 
@@ -150,6 +154,35 @@ export default class ScanFlip extends React.Component {
     });
   };
 
+  getCardMatchup() {
+    const flipper = <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
+    <div key="front">
+       <p>This will be candi 1 D</p>
+    </div>
+    <div key="back">
+      <p>This will be candi 1 RRR</p>
+    </div>
+  </ReactCardFlip>;
+    return flipper;
+  }
+  
+
+  getMainScanner() {
+    return <X3LenseScanner onScan={this.handleScan} />;
+  }
+
+  getMainFlipper() {
+
+    const flipper = <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
+    <div key="front">
+      { this.state.showScanner ? this.getMainScanner(): this.getCardMatchup() }
+    </div>
+    <div key="back">
+      <VideoClip videoId={this.props.videoId} onReady={this._onReady} />;
+    </div>
+  </ReactCardFlip>;
+    return flipper;
+  }
 
 
   render() {
@@ -161,18 +194,15 @@ export default class ScanFlip extends React.Component {
         autoplay: 1
       }
     };
+
+
+
     
     return (
 
     <div >
-      <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-        <div key="front">
-          <X3LenseScanner onScan={this.handleScan} />
-        </div>
-        <div key="back">
-          <VideoClip videoId={this.props.videoId} onReady={this._onReady} />;
-        </div>
-      </ReactCardFlip>
+
+      {this.getMainFlipper()}
       <CardActions style={{ justifyContent: 'center' }}>
             <Button onClick={this.handleClick}>
                 <HomeIcon style={{ paddingRight: '0.5em' }} />
