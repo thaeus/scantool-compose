@@ -14,6 +14,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
 import Card from 'react-playing-card'
+import PubSub from 'pubsub-js';
 
 const styles = {
     flex: { display: 'flex' },
@@ -40,18 +41,31 @@ class Dashboard extends Component {
           isFlipped3: false,
           isFlipped4: false,
           message: 'Get your walmart receipts and start scanning!',
-          error: false
+          error: false,
+          card1: {}
         };
         this.handleClick1 = this.handleClick1.bind(this);
         this.handleClick2 = this.handleClick2.bind(this);
         this.handleClick3 = this.handleClick3.bind(this);
         this.handleClick4 = this.handleClick4.bind(this);
+        this.card1ScanSubscriber = this.card1ScanSubscriber.bind(this);
 
+
+        PubSub.subscribe('card1.scan', this.card1ScanSubscriber);
+        
       }
+
+    card1ScanSubscriber(msg,data) {
+        this.setState({ card1: data });
+        return;
+    }
+
 
     componentDidMount() {
         this.fetchData();
     }
+
+
 
     componentDidUpdate(prevProps) {
         // handle refresh
@@ -140,18 +154,6 @@ class Dashboard extends Component {
         });
     }
 
-    getCard2() {
-        const flipper = <ReactCardFlip isFlipped={this.state.isFlipped2} flipDirection="horizontal">
-        <div key="front">
-           <p>This will be candi 2 D</p>
-        </div>
-        <div key="back">
-          <p>This will be candi 2 RRR</p>
-        </div>
-      </ReactCardFlip>;
-        return flipper;
-    }
-    
     
     handleClick1(e) {
          e.preventDefault();
@@ -173,12 +175,18 @@ class Dashboard extends Component {
          this.setState(prevState => ({ isFlipped4: !prevState.isFlipped4 }));
     }
 
-    getCard(stateVar,clickFunction) {
+    //start here and fill in rank and suit
+    getCard(pcard,stateVar,clickFunction) {
+        pcard = {
+            "rank": 7,
+            "suit": "s"
+        };
+
         const flipper = 
         <div> 
             <ReactCardFlip isFlipped={stateVar} flipDirection="horizontal">
             <div key="front">
-                <Card rank="A" suit="S" />
+                <Card rank={this.state.card1.number} suit={this.state.card1.suit} />
             </div>
             <div key="back">
                 <Card rank="7" suit="S" />
@@ -216,10 +224,7 @@ class Dashboard extends Component {
                                 <Welcome />
                             </div>
                             <div>
-                                {this.getCard(this.state.isFlipped1,this.handleClick1)}
-                                {this.getCard(this.state.isFlipped2,this.handleClick2)}
-                                {this.getCard(this.state.isFlipped3,this.handleClick3)}
-                                {this.getCard(this.state.isFlipped4,this.handleClick4)}
+                                {this.getCard(this.state.card1,this.state.isFlipped1,this.handleClick1)}
                             </div>
                         </div>
                     </div>
@@ -229,11 +234,9 @@ class Dashboard extends Component {
                         <div style={styles.singleCol}>
                             <Welcome />
                         </div>
-                        <div style={styles.flex}>
-                                {this.getCard(this.state.isFlipped1,this.handleClick1)}
-                                {this.getCard(this.state.isFlipped2,this.handleClick2)}
-                                {this.getCard(this.state.isFlipped3,this.handleClick3)}
-                                {this.getCard(this.state.isFlipped4,this.handleClick4)}
+                        <div >
+                        {this.getCard(this.state.card1,this.state.isFlipped1,this.handleClick1)}
+
                             </div>
                     </div>
                 }
@@ -244,10 +247,7 @@ class Dashboard extends Component {
                                 <Welcome />
                             </div>
                             <div style={styles.flex}>
-                                {this.getCard(this.state.isFlipped1,this.handleClick1)}
-                                {this.getCard(this.state.isFlipped2,this.handleClick2)}
-                                {this.getCard(this.state.isFlipped3,this.handleClick3)}
-                                {this.getCard(this.state.isFlipped4,this.handleClick4)}
+                                {this.getCard(this.state.card1,this.state.isFlipped1,this.handleClick1)}
                             </div>
                         </div>
                     </div>

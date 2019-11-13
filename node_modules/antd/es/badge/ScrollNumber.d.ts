@@ -29,7 +29,7 @@ declare class ScrollNumber extends React.Component<ScrollNumberProps, ScrollNumb
     onAnimated: () => void;
     renderCurrentNumber(prefixCls: string, num: number | string, i: number): JSX.Element;
     renderNumberElement(prefixCls: string): string | number | JSX.Element[] | null | undefined;
-    renderScrollNumber: ({ getPrefixCls }: ConfigConsumerProps) => React.ComponentElement<any, React.Component<any, any, any>> | React.ReactElement<HTMLElement, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+    renderScrollNumber: ({ getPrefixCls }: ConfigConsumerProps) => React.CElement<any, React.Component<any, any, any>> | React.ReactElement<HTMLElement, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
     render(): JSX.Element;
 }
 export default ScrollNumber;

@@ -15,31 +15,11 @@ import HomeIcon from '@material-ui/icons/Home';
 import { translate } from 'react-admin';
 import VideoSlider from './VideoSlider';
 import axios from 'axios';
-
+import PubSub from 'pubsub-js';
 
 export default class ScanFlip extends React.Component {
   constructor(props) {
     super(props);
-    var vids = [
-      // eslint-disable-next-line prettier/prettier
-      ['Trnbv4d-JBs', '#1'],
-      ['qpT5Md4TPJg', '#2'],
-      ['rF8ieTby4VI', '#3'],
-      ['J1dVkhF9CPw', '#4'],
-      ['cqyziA30whE', '#5'],
-      ['iX0UHxazZ5o', '#6'],
-      ['68uUeZGppXw', '#7'],
-      ['oaN_sWyTW24', '#8'],
-      ['oaN_sWyTW24', '#9'],
-      ['oaN_sWyTW24', '#10'],
-      ['oaN_sWyTW24', '#11'],
-      ['oaN_sWyTW24', '#12'],
-      ['oaN_sWyTW24', '#13'],
-      ['oaN_sWyTW24', '#14'],
-      ['oaN_sWyTW24', '#15'],
-      ['oaN_sWyTW24', '#16'],
-
-    ];
 
     this.state = {
       showScanner: true,
@@ -49,11 +29,9 @@ export default class ScanFlip extends React.Component {
       isFull: false,
       isFlipped: false,
       message: 'Get your walmart receipts and start scanning!',
-      vids: vids,
       error: false
     };
     this.handleScan = this.handleScan.bind(this);
-    this.loadCampaignVideo = this.loadCampaignVideo.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -84,54 +62,14 @@ export default class ScanFlip extends React.Component {
       var resmd5 = md5(res);
       var switchChar = resmd5.charAt(0);
       var returnArray;
-      switch (switchChar) {
-        case '0':
-        case '8':
-          returnArray = this.state.vids[0];
-          break;
-        case '1':
-        case '9':
-          returnArray = this.state.vids[1];
-          break;
-        case '2':
-        case 'a':
-          returnArray = this.state.vids[2];
-          break;
-        case '3':
-        case 'b':
-          returnArray = this.state.vids[3];
-          break;
-        case '4':
-        case 'c':
-          returnArray = this.state.vids[4];
-          break;
-        case '5':
-        case 'd':
-          returnArray = this.state.vids[5];
-          break;
-        case '6':
-        case 'e':
-          returnArray = this.state.vids[6];
-          break;
-        case '7':
-        case 'f':
-          returnArray = this.state.vids[7];
-          break;
-      }
 
-      var message = "Reading gamepiece... " + rawScan + " (Congratulations, you found resume video " + returnArray[1] + ")";
-      this.setState({ plink: Date.now() });
-      this.setState({ video: returnArray[0] });
-      this.setState({ message: message});
-      this.setState({ openOnMount: true });
-      this.setState({ error: false });
 
       console.log("readdddd " + rawScan);
 
       axios.get('http://localhost:7000/candidate/scan?matric_value='+rawScan)
       .then(elec => {
-        this.setState({ cards: [elec.data.card1] });
-        this.setState({ showScanner: false });
+        PubSub.publish('card1.scan', elec.data.card1);
+        console.log(this.state)
         console.log(elec.data)
       })
 
@@ -143,72 +81,18 @@ export default class ScanFlip extends React.Component {
     console.error(err);
   }
 
-  loadCampaignVideo() {
 
-  }
-
-  clearStateVideo = () => {
-    this.setState({
-      video: '',
-      toggler: false
-    });
-  };
-
-  getCardMatchup() {
-    const flipper = <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-    <div key="front">
-       <p>This will be candi 1 D</p>
-    </div>
-    <div key="back">
-      <p>This will be candi 1 RRR</p>
-    </div>
-  </ReactCardFlip>;
-    return flipper;
-  }
-  
 
   getMainScanner() {
     return <X3LenseScanner onScan={this.handleScan} />;
   }
 
-  getMainFlipper() {
-
-    const flipper = <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
-    <div key="front">
-      { this.state.showScanner ? this.getMainScanner(): this.getCardMatchup() }
-    </div>
-    <div key="back">
-      <VideoClip videoId={this.props.videoId} onReady={this._onReady} />;
-    </div>
-  </ReactCardFlip>;
-    return flipper;
-  }
-
-
   render() {
-
-
-    const opts = {
-      playerVars: {
-        // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
-      }
-    };
-
-
-
     
     return (
 
     <div >
-
-      {this.getMainFlipper()}
-      <CardActions style={{ justifyContent: 'center' }}>
-            <Button onClick={this.handleClick}>
-                <HomeIcon style={{ paddingRight: '0.5em' }} />
-                Scan Walmart Receipt!
-            </Button>
-        </CardActions>
+      {this.getMainScanner()}
     </div>
 
     );
